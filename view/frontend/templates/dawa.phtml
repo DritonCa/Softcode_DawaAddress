@@ -1,0 +1,9 @@
+<?php $config = $block->getJsConfig(); ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Softcode_DawaAddress/js/dawa": <?= json_encode($config, JSON_UNESCAPED_SLASHES) ?>
+    }
+}
+</script>

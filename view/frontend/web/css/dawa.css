@@ -1,0 +1,22 @@
+.sc-dawa-dropdown {
+    position: absolute;
+    z-index: 9999;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.sc-dawa-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sc-dawa-item:hover,
+.sc-dawa-item.active {
+    background: #f2f2f2;
+}

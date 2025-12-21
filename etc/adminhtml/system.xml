@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+
+    <system>
+
+        <!-- TAB -->
+        <tab id="softcode" translate="label" sortOrder="900">
+            <label>Softcode</label>
+        </tab>
+
+        <!-- SECTION -->
+        <section id="softcode_dawa"
+                 translate="label"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+
+            <label>DAWA Address Autocomplete</label>
+            <tab>softcode</tab>
+
+            <!-- ACL RESOURCE (CORRECT PLACE) -->
+            <resource>Softcode_DawaAddress::config</resource>
+
+            <!-- GENERAL -->
+            <group id="general" translate="label" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable DAWA</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="street_mode" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Street field mode</label>
+                    <source_model>Softcode\DawaAddress\Model\Config\Source\StreetMode</source_model>
+                </field>
+
+                <field id="debounce" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Debounce (ms)</label>
+                    <comment>Recommended: 300</comment>
+                </field>
+            </group>
+
+            <!-- SELECTORS -->
+            <group id="selectors" translate="label" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Field Selectors</label>
+
+                <field id="postcode" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Postcode selector</label>
+                </field>
+
+                <field id="city" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>City selector</label>
+                </field>
+
+                <field id="street" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Street selector</label>
+                </field>
+
+                <field id="housenumber" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>House number selector</label>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>
