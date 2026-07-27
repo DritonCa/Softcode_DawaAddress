@@ -65,6 +65,34 @@ server or stored.
 
 ---
 
+## Testing
+
+The PHP that decides what the frontend widget receives is unit tested:
+
+```bash
+# from a Magento install with the module in app/code/Softcode/DawaAddress
+vendor/bin/phpunit -c dev/tests/unit/phpunit.xml.dist \
+  app/code/Softcode/DawaAddress/Test/Unit
+```
+
+`JsConfigProviderTest` pins the activation rules — the widget stays **disabled**
+when the toggle is off *or* any CSS selector is missing (a safety guard), and the
+street-mode/debounce defaults are applied. `StreetModeTest` checks the admin
+dropdown offers exactly `separate` and `combined`.
+
+The browser behaviour (postcode → city lookup, address autocomplete, keyboard
+selection) is not covered by automated tests — smoke-test it in a checkout after
+install.
+
+### What CI checks
+
+GitHub Actions runs on every push/PR and **fails the build** on PHP syntax errors
+and Magento 2 coding-standard errors (`phpcs --standard=Magento2 -n`). It does not
+run the unit tests (those need a Magento framework install); run them locally as
+shown above.
+
+---
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
