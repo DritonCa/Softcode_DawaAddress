@@ -53,9 +53,11 @@ Copy the module to `app/code/Softcode/DawaAddress`, then run the same three comm
 - `web/js/dawa.js` wires up two behaviours: postcode → city lookup, and a debounced
   address autocomplete rendered by `web/js/dropdown.js`.
 
-```
-Admin config ──▶ JsConfigProvider ──▶ dawa.js ──▶ dawa.aws.dk (postnumre / adresser)
-                                          └──▶ fills postcode · city · street fields
+```mermaid
+flowchart LR
+    A["Admin config"] --> JC["JsConfigProvider"] --> JS["dawa.js"]
+    JS -->|lookup| D["dawa.aws.dk<br/>(postnumre / adresser)"]
+    JS --> F["fills postcode · city · street"]
 ```
 
 Only DAWA field values are written into the form inputs; nothing is sent to your
