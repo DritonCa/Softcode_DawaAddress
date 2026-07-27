@@ -60,6 +60,10 @@ define([
         ============================================================ */
         $(document).on('focus', selectors.street, function () {
             const $input = $(this);
+
+            // Prevent duplicate handlers stacking up on repeated focus.
+            $input.off('input.dawa keydown.dawa');
+
             const dropdown = createDropdown($input);
 
             let debounceTimer = null;
@@ -128,7 +132,7 @@ define([
                         e.preventDefault();
                         break;
                     case 'Enter':
-                        dropdown.selectActive(() => {});
+                        dropdown.selectActive();
                         e.preventDefault();
                         break;
                     case 'Escape':
