@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 ### Added
+- **JavaScript unit tests (Jest + jsdom)** for the checkout widget:
+  `Test/js/dropdown.test.js` (mouse + keyboard selection, arrow navigation, hide)
+  and `Test/js/dawa.test.js` (postcode→city incl. API failure, debounced
+  autocomplete, ArrowUp/Down/Enter/Escape, no duplicate handlers on repeated focus).
+  A new `js-tests` CI job runs them (`npm ci && npm test`).
 - `Test/Unit/Model/JsConfigProviderTest.php` and
   `Test/Unit/Model/Config/Source/StreetModeTest.php` — unit tests for the config
   payload sent to the frontend (enabled only when fully configured, street-mode

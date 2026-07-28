@@ -80,16 +80,30 @@ when the toggle is off *or* any CSS selector is missing (a safety guard), and th
 street-mode/debounce defaults are applied. `StreetModeTest` checks the admin
 dropdown offers exactly `separate` and `combined`.
 
-The browser behaviour (postcode → city lookup, address autocomplete, keyboard
-selection) is not covered by automated tests — smoke-test it in a checkout after
-install.
+The **frontend behaviour is unit tested** with Jest + jsdom (no Magento needed):
+
+```bash
+npm install
+npm test
+```
+
+- `Test/js/dropdown.test.js` — mouse selection, keyboard `selectActive`, arrow-key
+  highlight with clamping, and hide/replace, all through the real `dropdown.js`.
+- `Test/js/dawa.test.js` — postcode → city lookup (success *and* DAWA API failure),
+  debounced autocomplete, keyboard `ArrowUp`/`ArrowDown`/`Enter`/`Escape`, and that
+  repeated focus does not stack duplicate handlers.
+
+Only the full checkout wiring (real DAWA calls, theme layout) still needs a manual
+smoke test after install.
 
 ### What CI checks
 
-GitHub Actions runs on every push/PR and **fails the build** on PHP syntax errors
-and Magento 2 coding-standard errors (`phpcs --standard=Magento2 -n`). It does not
-run the unit tests (those need a Magento framework install); run them locally as
-shown above.
+GitHub Actions runs on every push/PR and **fails the build** on:
+
+- PHP syntax errors and Magento 2 coding-standard errors (`phpcs --standard=Magento2 -n`).
+- **Jest failures** — the JS unit tests run in a separate `js-tests` job (`npm ci && npm test`).
+
+The PHP unit tests need a Magento framework install, so run those locally as shown above.
 
 ---
 
