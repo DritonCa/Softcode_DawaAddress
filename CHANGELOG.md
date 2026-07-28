@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 ### Added
+- **PHP unit tests now run in CI** as a real gate — a standalone `Test/bootstrap.php`
+  autoloads the module and stubs the mocked Magento contracts, so
+  `phpunit -c phpunit.xml.dist` runs without a Magento install.
 - **JavaScript unit tests (Jest + jsdom)** for the checkout widget:
   `Test/js/dropdown.test.js` (mouse + keyboard selection, arrow navigation, hide)
   and `Test/js/dawa.test.js` (postcode→city incl. API failure, debounced

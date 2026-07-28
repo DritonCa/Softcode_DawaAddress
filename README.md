@@ -67,12 +67,12 @@ server or stored.
 
 ## Testing
 
-The PHP that decides what the frontend widget receives is unit tested:
+The PHP that decides what the frontend widget receives is unit tested, and it
+**runs without a Magento install** — `Test/bootstrap.php` autoloads the module and
+stubs the few Magento contracts it mocks:
 
 ```bash
-# from a Magento install with the module in app/code/Softcode/DawaAddress
-vendor/bin/phpunit -c dev/tests/unit/phpunit.xml.dist \
-  app/code/Softcode/DawaAddress/Test/Unit
+phpunit -c phpunit.xml.dist
 ```
 
 `JsConfigProviderTest` pins the activation rules — the widget stays **disabled**
@@ -101,9 +101,8 @@ smoke test after install.
 GitHub Actions runs on every push/PR and **fails the build** on:
 
 - PHP syntax errors and Magento 2 coding-standard errors (`phpcs --standard=Magento2 -n`).
+- **PHP unit-test failures** (`phpunit -c phpunit.xml.dist`, run as a real gate).
 - **Jest failures** — the JS unit tests run in a separate `js-tests` job (`npm ci && npm test`).
-
-The PHP unit tests need a Magento framework install, so run those locally as shown above.
 
 ---
 
